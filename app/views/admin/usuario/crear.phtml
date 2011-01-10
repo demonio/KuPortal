@@ -1,0 +1,30 @@
+<div class="form-container">
+    <h1>Usuario: <span>crear</span></h1>
+    <?php View::content(); ?>
+    <?php echo Form::open(null, 'post', 'class="scaffold"') ?>
+    <p class="legend"><strong>Nota:</strong> Los campos marcados con asterísco (<em>*</em>) son obligatorios</p>
+    <fieldset>
+        <legend>Datos del usuario</legend>
+        <div><label for="usuario_nick" class="required">Nick <em>*</em></label>
+            <?php echo Form::text('usuario.nick') ?></div>
+        <div><label for="usuario_email" class="required">Email <em>*</em></label>
+            <?php echo Form::text('usuario.email') ?></div>
+        <div><label for="usuario_clave" class="required">Clave <em>*</em></label>
+            <?php echo Form::pass('usuario.clave') ?></div>
+        <div><label for="usuario_nombre" class="required">Nombre <em>*</em></label>
+            <?php echo Form::text('usuario.nombre') ?>
+        </div>
+        <div><label for="usuario_rol_id" class="required">Rol <em>*</em></label>
+            <?php echo Form::dbSelect('usuario.rol_id', 'nombre', array('seguridad/rol','find'), '- Seleccione -') ?>
+        </div>
+    </fieldset>
+    <div class="buttonrow">            
+        <input type="submit" value="Enviar" />
+    </div>
+    <?php echo Form::close() ?>
+
+    <div class="actions">
+        <a href="../">Listado</a>
+    </div>
+
+</div>

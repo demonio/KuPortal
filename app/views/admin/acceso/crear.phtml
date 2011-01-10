@@ -1,0 +1,30 @@
+<div class="form-container">
+    <h1>Acceso: <span>crear</span></h1>
+    <?php View::content(); ?>
+    <?php echo Form::open(null, 'post', 'class="scaffold"') ?>
+    <p class="legend"><strong>Nota:</strong> Los campos marcados con asterísco (<em>*</em>) son obligatorios</p>
+    <fieldset>
+        <legend>Datos del rol_recurso</legend>
+        <div><label for="rol_recurso_rol_id" class="required">Rol <em>*</em></label>
+            <?php echo Form::dbSelect('rol_recurso.rol_id', 'nombre', array('rol', 'find'), '- Seleccione -') ?></div>
+        <div><label for="rol_recurso_recurso_id" class="required">Recurso <em>*</em></label>
+            <?php echo Form::dbSelect('rol_recurso.recurso_id', 'nombre', array('recurso', 'find'), '- Seleccione -') ?></div>
+        <div><label for="rol_recurso_menu_id" class="required">Menu <em>*</em></label>
+            <?php echo Form::dbSelect('rol_recurso.menu_id', 'nombre', array('menu', 'find'), '- Seleccione -') ?></div> 
+        <div><label for='rol_recurso_visible'>Visible <em>*</em></label>
+            <?php echo Form::select('rol_recurso.visible', array('1' => 'Visible', '0' => 'No visible')) ?>
+        </div>
+        <div><label for='rol_recurso_estado'>Estado <em>*</em></label>
+            <?php echo Form::select('rol_recurso.estado', array('A' => 'Activo', 'D' => 'Desactivado')) ?>
+        </div>
+    </fieldset>
+    <div class="buttonrow">            
+        <input type="submit" value="Enviar" />
+    </div>
+    <?php echo Form::close() ?>
+
+    <div class="actions">
+        <a href="../">Listado</a>
+    </div>
+
+</div>

@@ -1,0 +1,39 @@
+
+<h1>Usuario: <span>index</span></h1>
+<?php View::content(); ?>
+<?php if ($results->items) : ?>
+    <table id="hor-minimalist">
+        <thead><tr>
+                <th>Id</th>
+                <th>Nick</th>
+                <th>Nombre</th>
+                <th>Registrado</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr></thead>
+        <tbody>
+            <?php foreach ($results->items as $item) : ?>
+                <tr>
+                    <td><?php echo $item->id?></td>
+                    <td><?php echo $item->nick?></td>
+                    <td><?php echo $item->nombre?></td>
+                    <td><?php echo $item->registrado_at?></td>
+                    <td><?php echo $item->estado?></td>
+                    <td><?php echo Html::linkAction("ver/$item->id/", Html::img('actions/view.png', 'Ver', 'height="32" width="32"')) ?> |
+                        <?php echo Html::linkAction("editar/$item->id/", Html::img('actions/edit.png', 'Editar', 'height="32" width="32"')) ?> |
+                        <?php echo Html::linkAction("borrar/$item->id/", Html::img('actions/delete.png', 'Borrar', 'height="32" width="32"'), 'onclick="return confirm(\'¿Está seguro?\')"') ?> |
+                        <?php echo Html::linkAction("cambiar_clave/$item->id/", Html::img('actions/group_key.png', 'Cambiar clave', 'height="32" width="32"')) ?>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+    <?php View::partial('paginators/digg', false, array('page' => $results, 'url' => Router::get('controller_path') . '/index')); ?>
+
+<?php else : // Si no hay items?>
+    <h2>No hay ningún registro</h2>
+<?php endif ?>
+
+<div class="actions">
+    <?php echo Html::linkAction("crear/", 'Crear registro') ?>
+</div>

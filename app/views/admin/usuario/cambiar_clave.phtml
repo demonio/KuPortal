@@ -1,0 +1,18 @@
+<div class="form-container">
+    <h1>Usuario: <span>crear</span></h1>
+    <?php View::content(); ?>
+    <?php echo Form::open(null, 'post', 'class="scaffold"') ?>
+    <?php //echo Form::hidden('usuario.id', null, $id)?>
+    <p class="legend"><strong>Nota:</strong> Los campos marcados con asterísco (<em>*</em>) son obligatorios</p>
+    <fieldset>
+        <legend>Datos del usuario</legend>
+        <div><label for="usuario_nick" class="required">Clave <em>*</em></label>
+            <?php echo Form::pass('usuario.clave') ?></div>
+        <div><label for="usuario_email" class="required">Repita la clave: <em>*</em></label>
+            <?php echo Form::pass('usuario.clave2') ?></div>        
+    </fieldset>
+    <div class="buttonrow">            
+        <?php echo Form::submit('Cambiar','onclick="return confirm(\'¿Está seguro?\');"');?>
+    </div>
+    <?php echo Form::close() ?>
+</div

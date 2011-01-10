@@ -1,0 +1,39 @@
+<?php echo Tag::css('jquery/treeview/jquery.treeview') ?>
+<?php echo Tag::js('jquery/jquery.treeview') ?>
+
+<h1>Acceso: <span>listar</span></h1>
+
+<div id="treecontrol">
+    <a title="Cierra El Arbol" href="#">Cerrar Todos</a> |
+    <a title="Cierra El Arbol" href="#">Expandir Todos</a> |
+    <a title="Cierra y Abre los elementos del Arbol" href="#">Toggle All</a>
+</div>
+
+<ul id="navigation">
+<?php foreach ($roles as $rol):?>
+    <li><h2><?php echo $rol->nombre ?></h2>
+        <ul>
+            <?php foreach(Load::model('rol_recurso')->getMenuX($rol->id) as $item): ?>
+            <li><?php echo Html::link('#', $item->getMenu()->nombre, "title='Controlador'") ?>
+                <ul>
+                    <?php foreach (Load::model('rol_recurso')->getSubMenu($rol->id, $item->getMenu()->id) as $menu): ?>
+                        <li><strong><?php echo $menu->getRecurso()->nombre ?></strong>  : <?php echo $menu->url ?>
+                            <?php echo Html::link("admin/acceso/borrar/$menu->id/", 'Borrar') ?> |
+                            <?php echo Html::link("admin/acceso/editar/$menu->id/", 'Editar') ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </li>
+<?php endforeach; ?>
+</ul>
+
+<script type='text/javascript'>
+    $("#navigation").treeview({
+        collapsed: true,
+        animated: 'fast',
+        control: "#treecontrol"
+    });
+</script>

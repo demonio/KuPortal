@@ -1,0 +1,39 @@
+<script type="text/javascript">
+    var headID = document.getElementsByTagName("head")[0];
+    var cssNode = document.createElement('link');
+    cssNode.type = 'text/css';
+    cssNode.rel = 'stylesheet';
+    cssNode.href = '<?php echo PUBLIC_PATH ?>css/menu/dropdown.css';
+    cssNode.media = 'all';
+    headID.appendChild(cssNode);
+
+    var cssNode = document.createElement('link');
+    cssNode.type = 'text/css';
+    cssNode.rel = 'stylesheet';
+    cssNode.href = "<?php echo PUBLIC_PATH ?>css/menu/default.advanced.css";
+    cssNode.media = 'all';
+    headID.appendChild(cssNode);
+</script>
+<?php $rol_recurso = Load::model('seguridad/rol_recurso') ?>
+<?php Load::model('seguridad/menu') ?>
+<?php Load::model('seguridad/recurso') ?>
+<ul class="dropdown dropdown-horizontal">
+    <?php //foreach($rol_recurso->getMenuX(Auth::get('rol_id')) as $item): ?>
+    <?php foreach($rol_recurso->getMenuX('1') as $item): ?>
+        <li>
+            <a href='#' title="<?php echo $item->getMenu()->titulo ?>"><?php echo $item->getMenu()->nombre ?></a>
+            <ul>
+            <?php //foreach ($rol_recurso->getSubMenu(Auth::get('rol_id'), $item->getMenu()->id) as $rol_recurso): ?>
+            <?php foreach ($rol_recurso->getSubMenu(1, $item->getMenu()->id,'A','1') as $rol_recurso): ?>            
+                <li><?php echo Html::link("{$rol_recurso->getRecurso()->url}", $rol_recurso->getRecurso()->nombre) ?></li>                
+            <?php endforeach; ?>
+            </ul>
+        </li>
+    <?php endforeach; ?>    
+    <li>
+        <?php echo Html::link('', 'Ver sitio','target="_blank"') ?>
+    </li>
+    <li>
+        <?php echo Html::link('logout/', 'Salir') ?>
+    </li>
+</ul>

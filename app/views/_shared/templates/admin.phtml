@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8"/>
+        <title>KuPortal - <?php echo $modulo?> - Administración</title>
+
+        <!--[if lt IE 9]>
+                <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+        <?php Tag::css('admin') ?>
+        <?php echo Html::includeCss() ?>
+        <meta name="viewport" content="width=device-width; initial-scale=1"/>
+        <!-- Add "maximum-scale=1" to fix the weird iOS auto-zoom bug on orientation changes. -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <?php //View::partial('kumbia/footer') ?>
+        <div id='container'>
+            <header>
+                <div id="logo">
+            <!--<a href="#"><img src="images/logo.gif" alt="Logo" /></a>-->
+                    <hgroup>
+                        <h1><a href="/">KuPortal</a></h1>
+                        <h3>CMS potenciado por KumbiaPHP</h3>
+
+                    </hgroup>
+                </div>
+                <nav>                    
+                    <?php View::partial('menu') ?>
+                </nav>
+            </header>
+            <div id="content">                
+                <?php View::content(); ?>
+            </div>
+            <footer>
+                <?php View::partial('kumbia/footer') ?>
+            </footer>
+        </div>
+    </body>
+
+</html>

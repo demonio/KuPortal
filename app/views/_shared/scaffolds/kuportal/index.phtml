@@ -1,0 +1,33 @@
+
+<?php View::content() ?>
+<h1><?php echo ucwords("$model"), ": <span>$action_name</span>" ?></h1>
+<?php if ($results->items) : ?>
+    <table id="hor-minimalist">
+        <thead><tr>
+                <?php foreach (current($results->items)->fields as $field) : ?>
+                    <th><?php echo (current($results->items)->get_alias($field)) ?></th>
+                <?php endforeach ?>
+                <th>Acciones</th>
+            </tr></thead>
+        <tbody>
+            <?php foreach ($results->items as $item) : ?>
+                <tr>
+                    <?php foreach ($item->fields as $field) : ?>
+                        <td><?php eh($item->$field) ?></td>
+                    <?php endforeach ?>
+                    <td><?php echo Html::linkAction("ver/$item->id", Html::img('actions/view.png', 'Ver', 'height="32" width="32"')) ?> |
+                        <?php echo Html::linkAction("editar/$item->id", Html::img('actions/edit.png', 'Editar', 'height="32" width="32"')) ?> |
+                        <?php echo Html::linkAction("borrar/$item->id", Html::img('actions/delete.png', 'Borrar', 'height="32" width="32"'), 'onclick="return confirm(\'¿Está seguro?\')"') ?>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+    <?php View::partial('paginators/digg', false, array('page' => $results, 'url' => Router::get('controller_path') . '/index')); ?>
+
+<?php else : // Si no hay items?>
+    <h2>No hay ningún registro</h2>
+<?php endif ?>
+<div class="actions">
+    <?php echo Html::linkAction("crear/", 'Crear registro') ?>
+</div>
