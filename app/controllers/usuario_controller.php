@@ -10,7 +10,7 @@
  */
 Load::models('seguridad/usuario');
 
-class UsuarioController extends ApplicationController {
+class UsuarioController extends AppController {
 
     public function before_filter() {
         /* /$this->submenu = array('admin/usuario/index/activo/1/'=>'Lista activos',
